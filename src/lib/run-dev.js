@@ -338,7 +338,7 @@ async function invokeAction ({ actionRequestContext, logger }) {
   let actionFunction
   // catch errors when loading the action function
   try {
-    actionFunction = require(action.function)?.main
+    actionFunction = (await import(action.function))?.main
   } catch (e) {
     return {
       statusCode: 400,
